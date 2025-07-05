@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sell an Item</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+    input, textarea, button {
+      display: block; width: 100%; padding: 10px; margin-top: 10px;
+    }
+    h2 { color: #ff9900; }
+  </style>
+  <script>
+    function blockBadItems(event) {
+      const banned = ["gun", "weapon", "cocaine", "heroin", "fentanyl"];
+      const item = document.getElementById("item").value.toLowerCase();
+      for (let word of banned) {
+        if (item.includes(word)) {
+          alert("❌ This item is not allowed.");
+          event.preventDefault();
+          return false;
+        }
+      }
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <h2>Post an Item</h2>
+  <form action="https://formsubmit.co/your@email.com" method="POST" onsubmit="blockBadItems(event)">
+    <input id="item" name="Item Name" placeholder="Item Name" required>
+    <textarea name="Description" placeholder="Describe item..." required></textarea>
+    <input name="Bitcoin Address" placeholder="Your Bitcoin wallet address" required>
+    <input name="Contact Info" placeholder="Email or phone" required>
+    <input type="hidden" name="_subject" value="New Item Listing">
+    <button type="submit">Submit Listing</button>
+  </form>
+  <p><a href="index.html">← Back to Home</a></p>
+</body>
+</html>
